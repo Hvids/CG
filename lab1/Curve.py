@@ -16,8 +16,9 @@ class Curve:
         self.__b = width / 2
         self.__m = 5 * width / 270
         # for Y
-        self.__a = height / 2
         self.__k = -5 * height / 280
+        self.__a = height / 2 - self.__k * parameter
+
 # изменяющиеся параметры кривой
         self.__parameter = parameter
         self.__center = 0
