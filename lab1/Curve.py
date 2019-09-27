@@ -7,17 +7,17 @@ class Curve:
     Класс кривой
     """
 
-    def __init__(self, qp, width, height, parameter, step):
+    def __init__(self, qp, width, height, parameter, step, travel):
         # Место рисования
         self.__qp = qp
 
 # Параметры для перемещения
         # for X
-        self.__b = width / 2
+        self.__b = width / 2 - travel.calculate_travel_x()
         self.__m = 5 * width / 270
         # for Y
         self.__k = -5 * height / 280
-        self.__a = height / 2 - self.__k * parameter
+        self.__a = height / 2 - travel.calculate_travel_y()
 
 # изменяющиеся параметры кривой
         self.__parameter = parameter
