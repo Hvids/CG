@@ -40,7 +40,6 @@ class Curve:
             y = self.__calculateValueY(t)
             point_end = Point(x, y)
             line = Line(point_start, point_end)
-            # print(line)
             line.to_turn(self.__phi)
             line.to_scale(self.__m, self.__k)
             line.move(self.__b, self.__a)
