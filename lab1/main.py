@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 from Curve import Curve, Point
 from TravelScreen import TravelScreen
 from CordinateAxes import CordinateAxes
+from Turn import Turn
 
 
 class Example(QWidget):
@@ -13,7 +14,8 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         self.__parameter = 10
-        self.travel_screen = TravelScreen(0, 0)
+        self.travel_screen = TravelScreen()
+        self.turn = Turn()
         self.initUI()
 
     def initUI(self):
@@ -26,15 +28,26 @@ class Example(QWidget):
         self.show()
 
     def mouseMoveEvent(self, e):
-        if e.buttons() != Qt.RightButton:
-            self.travel_screen.end_x = e.pos().x()
-            self.travel_screen.end_y = e.pos().y()
+        if e.buttons() == Qt.LeftButton:
+            end = Point(e.pos().x(), e.pos().y())
+            self.travel_screen.point_end = end
+            self.travel_screen.update_travel()
+            self.update()
+        if e.buttons() == Qt.RightButton:
+            end = e.pos().y()
+            self.turn.end = end
+            self.turn.update_turn()
             self.update()
 
     def mousePressEvent(self, e):
-        if e.buttons() != Qt.RightButton:
-            x, y = e.pos().x(), e.pos().y()
-            self.travel_screen = TravelScreen(x, y)
+        if e.buttons() == Qt.LeftButton:
+
+            start = Point(e.pos().x(), e.pos().y())
+            self.travel_screen.point_start = start
+        if e.buttons() == Qt.RightButton:
+
+            start = e.pos().y()
+            self.turn.start = start
 
     def onChanged(self, text):
         self.__takeParameter(text)
@@ -60,7 +73,7 @@ class Example(QWidget):
         qp.setPen(pen)
 
         curve = Curve(qp, size.width(), size.height(),
-                      self.__parameter, 0.5, self.travel_screen)
+                      self.__parameter, 0.5, self.travel_screen, self.turn)
         curve.draw()
 
     def __takeParameter(self, text):

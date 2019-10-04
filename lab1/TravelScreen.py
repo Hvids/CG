@@ -1,13 +1,19 @@
+from Point import Point
+
 
 class TravelScreen:
-    def __init__(self, x, y):
-        self.start_x = x
-        self.start_y = y
-        self.end_x = x
-        self.end_y = y
+    def __init__(self):
+        self.point_start = Point(0, 0)
+        self.point_end = Point(0, 0)
+        self.__travel_x = 0
+        self.__travel_y = 0
+
+    def update_travel(self):
+        self.__travel_x += (self.point_end.x - self.point_start.x) / 25
+        self.__travel_y += (self.point_end.y - self.point_start.y) / 25
 
     def calculate_travel_x(self):
-        return -self.start_x + self.end_x
+        return self.__travel_x
 
     def calculate_travel_y(self):
-        return -self.start_y + self.end_y
+        return self.__travel_y
