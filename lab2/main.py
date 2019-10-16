@@ -22,7 +22,7 @@ class Example(QWidget):
         self.c = 70
         self.h = 70
         self.travel_screen = TravelScreen()
-        self.vector_see = Vector(-1, -1, 1)
+        self.vector_see = Vector(0, 0, -1)
         self.turn = Turn()
         # self.Action()
         self.initUI()
@@ -84,8 +84,8 @@ class Example(QWidget):
 
         wedge = Wedge(self.a, self.b, self.c, self.h)
         wedge.to_scale(k_x=width / 270, k_y=width / 280, k_z=1)
-        wedge.to_turn_oz(phi=self.turn.phi)
-        # wedge.to_turn_ox(phi=self.turn.phi)
+        # wedge.to_turn_oz(phi=self.turn.phi)
+        wedge.to_turn_ox(phi=self.turn.phi)
         # wedge.to_turn_oy(phi=self.turn.phi)
 
         wedge.move(d_x=width / 4 - self.travel_screen.travel_x,

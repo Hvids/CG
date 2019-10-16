@@ -11,7 +11,7 @@ class CordinateAxes():
         self.__create()
 
     def __create_axes_ox(self):
-        y = self.__height / 2 - self.__travel.calculate_travel_y()
+        y = self.__height / 2 + self.__travel.calculate_travel_y()
         start = Point(0, y)
         end = Point(self.__width, y)
         start_arrow_line_up = Point(self.__width - 10, y + 5)
@@ -19,7 +19,7 @@ class CordinateAxes():
         return [Line(start, end), Line(start_arrow_line_up, end), Line(start_arrow_line_down, end)]
 
     def __create_axes_oy(self):
-        x = self.__width / 2 - self.__travel.calculate_travel_x()
+        x = self.__width / 2 + self.__travel.calculate_travel_x()
         start = Point(x, 0)
         end = Point(x, self.__height)
         start_arrow_line_up = Point(x - 5, 10)

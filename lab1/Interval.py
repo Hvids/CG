@@ -26,6 +26,8 @@ class Interval:
         list_minus = []
         for t in self.__getFloatRangePlus():
             list_plus.append(t)
+        if list_plus[-1] < self.__radius:
+            list_plus.append(self.__radius)
         for t in self.__getFloatRangeMinus():
             list_minus.append(t)
         return list_minus + list_plus

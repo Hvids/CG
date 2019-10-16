@@ -8,18 +8,18 @@ class Curve:
     Класс кривой
     """
 
-    def __init__(self, qp, width, height, parameter, step, travel, turn):
+    def __init__(self, qp, width, height, parameter, step, travel, turn, scale):
         # Место рисования
         self.__qp = qp
 
 # Параметры для перемещения
         # for X
-        self.__phi = turn.get_turn()
-        self.__b = width / 2 - travel.calculate_travel_x()
-        self.__m = 5 * width / 270
+        self.__phi = turn
+        self.__b = width / 2 + travel.calculate_travel_x()
+        self.__m = scale * 5 * width / 270
         # for Y
-        self.__k = -5 * height / 280
-        self.__a = height / 2 - travel.calculate_travel_y()
+        self.__k = -5 * scale * height / 280
+        self.__a = height / 2 + travel.calculate_travel_y()
 
 # изменяющиеся параметры кривой
         self.__parameter = parameter
